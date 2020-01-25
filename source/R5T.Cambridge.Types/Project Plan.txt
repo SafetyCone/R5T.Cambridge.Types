@@ -1,4 +1,17 @@
 R5T.Cambridge.Types - A types library for the Cambridge project.
 
-Goals
+Builds on work from:
+https://github.com/MinexAutomation/R5T.Code.VS.SolutionFile.Types
 
+# Goals
+
+Build a simple, intuitive, easy way to de/serialize solution files and interact with their contents in memory.
+
+
+# Discussion
+
+This project takes the "refined" data-structure approach of parsing and structuring the information within the Visual Studio solution file.
+
+This is partly because the solution file uses a custom text-based format (unlike a Visual Studio project file, which is really just an XML file). This means a "raw" approach would just be different groupings of (string) lines.
+
+However, the "raw" approach is also harnessed to allow untyped solution-file global sections (global sections whose structure is not yet modeled in a "refined" data structure). This allows solution files with unknown global sections to still be de/serialized.
