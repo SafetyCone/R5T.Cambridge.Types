@@ -20,9 +20,17 @@ namespace R5T.Cambridge.Types
                 MinimumVisualStudioVersion = Version.Parse("15.0.26124.0"),
             };
 
-            var solutionConfigurationPlatformsGlobalSection = solutionFile.GlobalSections.AddSolutionConfigurationPlatformsGlobalSection();
+            solutionFile.GlobalSections.AddGlobalSection(SolutionFileGenerator.CreateSolutionPropertiesGlobalSection);
+            solutionFile.GlobalSections.AddGlobalSection(SolutionFileGenerator.CreateExtensibilityGlobals);
 
-            solutionConfigurationPlatformsGlobalSection.SolutionBuildConfigurationMappings.AddRange(new[]
+            return solutionFile;
+        }
+
+        public static SolutionConfigurationPlatformsGlobalSection CreateSolutionConfigurationPlatformsGlobalSection()
+        {
+            var solutionConfigurationPlatforms = SolutionConfigurationPlatformsGlobalSection.New();
+
+            solutionConfigurationPlatforms.SolutionBuildConfigurationMappings.AddRange(new[]
             {
                 new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.DebugAnyCPU, Destination = BuildConfigurationPlatform.DebugAnyCPU },
                 new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.DebugX64, Destination = BuildConfigurationPlatform.DebugX64 },
@@ -32,9 +40,7 @@ namespace R5T.Cambridge.Types
                 new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.ReleaseX86, Destination = BuildConfigurationPlatform.ReleaseX86 },
             });
 
-            solutionFile.GlobalSections.AddGlobalSection(SolutionFileGenerator.CreateSolutionPropertiesGlobalSection);
-
-            return solutionFile;
+            return solutionConfigurationPlatforms;
         }
 
         public static SolutionPropertiesGlobalSection CreateSolutionPropertiesGlobalSection()
