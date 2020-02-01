@@ -8,6 +8,25 @@ namespace R5T.Cambridge.Types
         #region Static
 
         /// <summary>
+        /// Creates the result of "dotnet new sln" for Visual Studio 2017.
+        /// </summary>
+        public static SolutionFile NewVisualStudio2019()
+        {
+            var solutionFile = new SolutionFile
+            {
+                FormatVersion = Version.Parse("12.00"),
+                VisualStudioMoniker = "# Visual Studio Version 16",
+                VisualStudioVersion = Version.Parse("16.0.29613.14"),
+                MinimumVisualStudioVersion = Version.Parse("16.0.29613.14"),
+            };
+
+            solutionFile.GlobalSections.AddGlobalSection(SolutionFileGenerator.CreateSolutionPropertiesGlobalSection);
+            solutionFile.GlobalSections.AddGlobalSection(SolutionFileGenerator.CreateExtensibilityGlobals);
+
+            return solutionFile;
+        }
+
+        /// <summary>
         /// Creates the result of "dotnet new sln".
         /// </summary>
         public static SolutionFile NewVisualStudio2017()
