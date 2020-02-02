@@ -197,5 +197,73 @@ namespace R5T.Cambridge.Types
         }
 
         #endregion
+
+        #region Solution Properties
+
+        public static bool HasSolutionPropertiesGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections, out SolutionPropertiesGlobalSection solutionPropertiesGlobalSection)
+        {
+            var output = globalSections.HasGlobalSectionByName(SolutionPropertiesGlobalSection.GlobalSectionName, out solutionPropertiesGlobalSection);
+            return output;
+        }
+
+        public static bool HasSolutionPropertiesGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
+        {
+            var output = globalSections.HasGlobalSectionByName<SolutionPropertiesGlobalSection>(SolutionPropertiesGlobalSection.GlobalSectionName);
+            return output;
+        }
+
+        public static SolutionPropertiesGlobalSection GetSolutionPropertiesGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
+        {
+            var solutionPropertiesGlobalSection = globalSections.GetGlobalSectionByName<SolutionPropertiesGlobalSection>(SolutionPropertiesGlobalSection.GlobalSectionName);
+            return solutionPropertiesGlobalSection;
+        }
+
+        public static SolutionPropertiesGlobalSection AddSolutionPropertiesGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        {
+            var solutionPropertiesGlobalSection = globalSections.AddGlobalSection(SolutionPropertiesGlobalSection.New);
+            return solutionPropertiesGlobalSection;
+        }
+
+        public static SolutionPropertiesGlobalSection AcquireSolutionPropertiesGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        {
+            var solutionPropertiesGlobalSection = globalSections.AcquireGlobalSectionByName(SolutionPropertiesGlobalSection.GlobalSectionName, SolutionPropertiesGlobalSection.New);
+            return solutionPropertiesGlobalSection;
+        }
+
+        #endregion
+
+        #region Solution Properties
+
+        public static bool HasExtensibilityGlobalsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections, out ExtensibilityGlobalsGlobalSection extensibilityGlobalsGlobalSection)
+        {
+            var output = globalSections.HasGlobalSectionByName(ExtensibilityGlobalsGlobalSection.GlobalSectionName, out extensibilityGlobalsGlobalSection);
+            return output;
+        }
+
+        public static bool HasExtensibilityGlobalsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
+        {
+            var output = globalSections.HasGlobalSectionByName<ExtensibilityGlobalsGlobalSection>(ExtensibilityGlobalsGlobalSection.GlobalSectionName);
+            return output;
+        }
+
+        public static ExtensibilityGlobalsGlobalSection GetExtensibilityGlobalsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
+        {
+            var extensibilityGlobalsGlobalSection = globalSections.GetGlobalSectionByName<ExtensibilityGlobalsGlobalSection>(ExtensibilityGlobalsGlobalSection.GlobalSectionName);
+            return extensibilityGlobalsGlobalSection;
+        }
+
+        public static ExtensibilityGlobalsGlobalSection AddExtensibilityGlobalsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        {
+            var extensibilityGlobalsGlobalSection = globalSections.AddGlobalSection(ExtensibilityGlobalsGlobalSection.New);
+            return extensibilityGlobalsGlobalSection;
+        }
+
+        public static ExtensibilityGlobalsGlobalSection AcquireExtensibilityGlobalsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        {
+            var extensibilityGlobalsGlobalSection = globalSections.AcquireGlobalSectionByName(ExtensibilityGlobalsGlobalSection.GlobalSectionName, ExtensibilityGlobalsGlobalSection.New);
+            return extensibilityGlobalsGlobalSection;
+        }
+
+        #endregion
     }
 }
