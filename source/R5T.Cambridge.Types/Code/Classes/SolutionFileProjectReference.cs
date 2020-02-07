@@ -13,6 +13,29 @@ namespace R5T.Cambridge.Types
     /// </remarks>
     public class SolutionFileProjectReference
     {
+        #region Static
+
+        public static SolutionFileProjectReference New(string projectName, string projectFileRelativePathValue, Guid projectTypeGUID)
+        {
+            var solutionFileProjectReference = new SolutionFileProjectReference
+            {
+                ProjectGUID = Guid.NewGuid(),
+                ProjectName = projectName,
+                ProjectFileRelativePathValue = projectFileRelativePathValue,
+                ProjectTypeGUID = projectTypeGUID,
+            };
+            return solutionFileProjectReference;
+        }
+
+        //public static SolutionFileProjectReference NewNetCoreOrStandardFromProjectFileRelativePath(string projectName, string projectFileRelativePathValue)
+        //{
+        //    var solutionFileProjectReference = SolutionFileProjectReference.New(projectName, projectFileRelativePathValue, Constants.NetStandardLibraryProjectTypeGUID);
+        //    return solutionFileProjectReference;
+        //}
+
+        #endregion
+
+
         public Guid ProjectTypeGUID { get; set; }
         public string ProjectName { get; set; }
         public string ProjectFileRelativePathValue { get; set; }
