@@ -98,33 +98,33 @@ namespace R5T.Cambridge.Types
 
         #region Nested Projects
 
-        public static bool HasNestedProjectsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections, out NestedProjectsSolutionFileGlobalSection nestedProjectsSolutionFileGlobalSection)
+        public static bool HasNestedProjectsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections, out NestedProjectsGlobalSection nestedProjectsSolutionFileGlobalSection)
         {
-            var output = globalSections.HasGlobalSectionByName(NestedProjectsSolutionFileGlobalSection.GlobalSectionName, out nestedProjectsSolutionFileGlobalSection);
+            var output = globalSections.HasGlobalSectionByName(NestedProjectsGlobalSection.GlobalSectionName, out nestedProjectsSolutionFileGlobalSection);
             return output;
         }
 
         public static bool HasNestedProjectsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
         {
-            var output = globalSections.HasGlobalSectionByName<NestedProjectsSolutionFileGlobalSection>(NestedProjectsSolutionFileGlobalSection.GlobalSectionName);
+            var output = globalSections.HasGlobalSectionByName<NestedProjectsGlobalSection>(NestedProjectsGlobalSection.GlobalSectionName);
             return output;
         }
 
-        public static NestedProjectsSolutionFileGlobalSection GetNestedProjectsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
+        public static NestedProjectsGlobalSection GetNestedProjectsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections)
         {
-            var nestedProjectsGlobalSection = globalSections.GetGlobalSectionByName<NestedProjectsSolutionFileGlobalSection>(NestedProjectsSolutionFileGlobalSection.GlobalSectionName);
+            var nestedProjectsGlobalSection = globalSections.GetGlobalSectionByName<NestedProjectsGlobalSection>(NestedProjectsGlobalSection.GlobalSectionName);
             return nestedProjectsGlobalSection;
         }
 
-        public static NestedProjectsSolutionFileGlobalSection AddNestedProjectsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        public static NestedProjectsGlobalSection AddNestedProjectsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
         {
-            var nestedProjectsGlobalSection = globalSections.AddGlobalSection(NestedProjectsSolutionFileGlobalSection.New);
+            var nestedProjectsGlobalSection = globalSections.AddGlobalSection(NestedProjectsGlobalSection.New);
             return nestedProjectsGlobalSection;
         }
 
-        public static NestedProjectsSolutionFileGlobalSection AcquireNestedProjectsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
+        public static NestedProjectsGlobalSection AcquireNestedProjectsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
         {
-            var nestedProjectsGlobalSection = globalSections.AcquireGlobalSectionByName(NestedProjectsSolutionFileGlobalSection.GlobalSectionName, NestedProjectsSolutionFileGlobalSection.New);
+            var nestedProjectsGlobalSection = globalSections.AcquireGlobalSectionByName(NestedProjectsGlobalSection.GlobalSectionName, NestedProjectsGlobalSection.New);
             return nestedProjectsGlobalSection;
         }
 
@@ -192,7 +192,13 @@ namespace R5T.Cambridge.Types
 
         public static SolutionConfigurationPlatformsGlobalSection AcquireSolutionConfigurationPlatformsGlobalSection(this List<ISolutionFileGlobalSection> globalSections)
         {
-            var solutionConfigurationPlatformsGlobalSection = globalSections.AcquireGlobalSectionByName(SolutionConfigurationPlatformsGlobalSection.GlobalSectionName, SolutionConfigurationPlatformsGlobalSection.New);
+            var solutionConfigurationPlatformsGlobalSection = globalSections.AcquireSolutionConfigurationPlatformsGlobalSection(SolutionConfigurationPlatformsGlobalSection.New);
+            return solutionConfigurationPlatformsGlobalSection;
+        }
+
+        public static SolutionConfigurationPlatformsGlobalSection AcquireSolutionConfigurationPlatformsGlobalSection(this List<ISolutionFileGlobalSection> globalSections, Func<SolutionConfigurationPlatformsGlobalSection> constructor)
+        {
+            var solutionConfigurationPlatformsGlobalSection = globalSections.AcquireGlobalSectionByName(SolutionConfigurationPlatformsGlobalSection.GlobalSectionName, constructor);
             return solutionConfigurationPlatformsGlobalSection;
         }
 
@@ -232,7 +238,7 @@ namespace R5T.Cambridge.Types
 
         #endregion
 
-        #region Solution Properties
+        #region Extensibility Globals
 
         public static bool HasExtensibilityGlobalsGlobalSection(this IEnumerable<ISolutionFileGlobalSection> globalSections, out ExtensibilityGlobalsGlobalSection extensibilityGlobalsGlobalSection)
         {
