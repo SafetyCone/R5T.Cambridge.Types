@@ -49,15 +49,7 @@ namespace R5T.Cambridge.Types
         {
             var solutionConfigurationPlatforms = SolutionConfigurationPlatformsGlobalSection.New();
 
-            solutionConfigurationPlatforms.SolutionBuildConfigurationMappings.AddRange(new[]
-            {
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.DebugAnyCPU, Destination = BuildConfigurationPlatform.DebugAnyCPU },
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.DebugX64, Destination = BuildConfigurationPlatform.DebugX64 },
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.DebugX86, Destination = BuildConfigurationPlatform.DebugX86 },
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.ReleaseAnyCPU, Destination = BuildConfigurationPlatform.ReleaseAnyCPU },
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.ReleaseX64, Destination = BuildConfigurationPlatform.ReleaseX64 },
-                new SolutionBuildConfigurationPlatform { Source = BuildConfigurationPlatform.ReleaseX86, Destination = BuildConfigurationPlatform.ReleaseX86 },
-            });
+            solutionConfigurationPlatforms.AddDefaultSolutionBuildConfigurationPlatforms();
 
             return solutionConfigurationPlatforms;
         }
