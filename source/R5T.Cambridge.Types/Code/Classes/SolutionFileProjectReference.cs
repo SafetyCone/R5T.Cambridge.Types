@@ -15,15 +15,23 @@ namespace R5T.Cambridge.Types
     {
         #region Static
 
-        public static SolutionFileProjectReference New(string projectName, string projectFileRelativePathValue, Guid projectTypeGUID)
+        public static SolutionFileProjectReference New(string projectName, string projectFileRelativePathValue, Guid projectTypeGUID, Guid projectGuid)
         {
             var solutionFileProjectReference = new SolutionFileProjectReference
             {
-                ProjectGUID = Guid.NewGuid(),
+                ProjectGUID = projectGuid,
                 ProjectName = projectName,
                 ProjectFileRelativePathValue = projectFileRelativePathValue,
                 ProjectTypeGUID = projectTypeGUID,
             };
+            return solutionFileProjectReference;
+        }
+
+        public static SolutionFileProjectReference New(string projectName, string projectFileRelativePathValue, Guid projectTypeGUID)
+        {
+            var newProjectGuid = Guid.NewGuid();
+
+            var solutionFileProjectReference = SolutionFileProjectReference.New(projectName, projectFileRelativePathValue, projectTypeGUID, newProjectGuid);
             return solutionFileProjectReference;
         }
 
@@ -40,5 +48,12 @@ namespace R5T.Cambridge.Types
         public string ProjectName { get; set; }
         public string ProjectFileRelativePathValue { get; set; }
         public Guid ProjectGUID { get; set; }
+
+
+        public override string ToString()
+        {
+            var representation = $"{this.ProjectName}: {this.ProjectGUID}";
+            return representation;
+        }
     }
 }
