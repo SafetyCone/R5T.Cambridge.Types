@@ -24,6 +24,19 @@ namespace R5T.Cambridge.Types
             return output;
         }
 
+        /// <summary>
+        /// Creates a new <see cref="SolutionConfigurationPlatformsGlobalSection"/> with the <see cref="SolutionConfigurationPlatformsGlobalSection.GlobalSectionName"/> and <see cref="PreOrPostSolution.PreSolution"/>.
+        /// Adds all default <see cref="SolutionBuildConfigurationPlatform"/> values.
+        /// </summary>
+        public static SolutionConfigurationPlatformsGlobalSection NewAddDefaultSolutionBuildConfigurationPlatforms()
+        {
+            var output = SolutionConfigurationPlatformsGlobalSection.New();
+
+            output.AddDefaultSolutionBuildConfigurationPlatforms();
+
+            return output;
+        }
+
         #endregion
 
 
